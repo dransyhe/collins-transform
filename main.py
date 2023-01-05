@@ -38,3 +38,6 @@ for line in depfile:
 tree = parse(postags, dependencies, root)
 tree = converter(tree)
 print_tree(tree)
+
+
+# Example output: (VP (NP (NP (PRP$ My-1)(NN aunt-2)(POS 's-3))(MD can-4)(NN opener-5))(MD can-6)(VB open-7)(NP (DT a-8)(NN drum-9))(. .-10))
