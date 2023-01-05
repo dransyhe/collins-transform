@@ -1,0 +1,10 @@
+join, Viken
+join, will
+join, board
+join, as
+join, 29
+board, the
+as, director
+director, a
+director, nonexecutive
+29, Nov
