@@ -1,23 +1,20 @@
 from src.tree import Node, Tree
 
 
-def parse(postags, dependencies):
+def parse(postags, dependencies, root):
     dic = {}
-    for postag in postags:
-        node = Node(postag[0], postag[1])
-        dic[postag[0]] = node
-
-    findroot = set(dic.keys())
+    for i, postag in enumerate(postags):
+        token = postag[0] + "-" + str(i+1)
+        node = Node(token, postag[1], i+1)
+        dic[token] = node
 
     for parent, child in dependencies:
         if child not in dic[parent].get_children():
             children = dic[parent].get_children()
             children += [dic[child]]
             dic[parent].set_children(children)
-        findroot.remove(child)
 
-    root = dic[list(findroot)[0]]
-    tree = Tree(root)
+    tree = Tree(dic[root])
 
     return tree
 
@@ -25,8 +22,11 @@ def parse(postags, dependencies):
 def traverse_children(node, out):
     for child in node.get_children():
         out += "(" + child.get_pos() + " "
-        if len(child.get_token()) > 0:
-            out += child.get_token()
+        token = child.get_token()
+        if len(token) > 0:
+            if token[0] == "(":
+                out += "\\"
+            out += token
         else:
             out = traverse_children(child, out)
         out += ")"

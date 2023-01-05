@@ -1,12 +1,10 @@
-Viken: NNP
-will: MD
-join: VB
-the: DT
-board: NN
-as: IN
-a: DT
-nonexecutive: JJ
-director: NN
-Nov: NNP
-29: CD
-
+My/PRP$
+aunt/NN
+'s/POS
+can/MD
+opener/NN
+can/MD
+open/VB
+a/DT
+drum/NN
+./.

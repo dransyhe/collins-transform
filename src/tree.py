@@ -1,8 +1,9 @@
 
 class Node:
-    def __init__(self, token, pos):
+    def __init__(self, token, pos, id):
         self.token = token
         self.pos = pos
+        self.id = id
         self.children = []
 
     def get_token(self):
@@ -10,6 +11,9 @@ class Node:
 
     def get_pos(self):
         return self.pos
+
+    def get_id(self):
+        return self.id
 
     def get_children(self):
         return self.children
@@ -19,6 +23,9 @@ class Node:
 
     def set_pos(self, new_pos):
         self.pos = new_pos
+
+    def set_id(self, new_id):
+        self.id = new_id
 
     def set_children(self, new_children):
         self.children = new_children

@@ -2,11 +2,8 @@ from src.tree import Node
 
 
 def transform(node):
-    children = node.get_children()
-
-    # set new projection of X
-    new_node = Node(node.get_token(), node.get_pos())
-    node.set_token("")
+    # move X down
+    new_node = Node(node.get_token(), node.get_pos(), node.get_id())
 
     # set XP
     pos = node.get_pos()
@@ -19,16 +16,17 @@ def transform(node):
     node.set_pos(new_pos)
 
     # recursively convert its children
+    children = node.get_children()
     for i, child in enumerate(children):
-        if len(child.get_children()) == 0:
-            new_children = children[:i+1] + [new_node] + children[i+1:]
-            node.set_children(new_children)
-        elif len(child.get_children()) > 0 and i == 0:
-            new_children = [new_node] + children
-            node.set_children(new_children)
+        if len(child.get_children()) > 0:
             transform(child)
-        else:
-            transform(child)
+
+    # set a new projection XP
+    children += [new_node]
+    children.sort(key=lambda x: x.get_id())
+    node.set_token("")
+    node.set_children(children)
+    node.set_id(max([child.get_id() for child in node.get_children()]))
 
 
 def converter(tree):
